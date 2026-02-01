@@ -100,3 +100,11 @@ Este plan define la ruta de construcción para Letrado con un enfoque 100% conta
 2) Diseñar esquema inicial de base de datos
 3) Definir endpoints mínimos del MVP
 4) Preparar documentación de setup local
+
+## Estado actual (implementado)
+
+- Scaffold mínimo en `apps/api`, `apps/worker`, `apps/scheduler`, `apps/dashboard`.
+- `infra/compose/docker-compose.yml` y `infra/compose/docker-compose.prod.yml` listos.
+- Base de datos inicial con SQLAlchemy + Alembic.
+  - Modelos: `users`, `words`, `user_words`, `prompts`, `responses`, `streaks`, `ttr_metrics`.
+  - Migración inicial: `apps/api/alembic/versions/0001_init_schema.py`.
