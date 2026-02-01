@@ -95,6 +95,7 @@ Documentacion del proyecto.
   - `plan-desarrollo.md`: roadmap tecnico y fases.
   - `architecture.md`: decisiones y arquitectura (por completar).
   - `api.md`: documentacion de endpoints y ejemplos.
+  - `setup-local.md`: guia de setup local con Docker Compose.
 
 ### scripts
 
@@ -115,3 +116,10 @@ Scripts operativos.
 
 - Este repo es monorepo y todos los servicios corren en contenedores.
 - La configuracion sensible vive en variables de entorno. Usar `.env.example` como referencia.
+
+## Tests (API)
+
+```bash
+pip install -r apps/api/requirements.txt -r apps/api/requirements-dev.txt
+pytest -c apps/api/pytest.ini
+```

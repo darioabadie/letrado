@@ -108,3 +108,4 @@ Este plan define la ruta de construcción para Letrado con un enfoque 100% conta
 - Base de datos inicial con SQLAlchemy + Alembic.
   - Modelos: `users`, `words`, `user_words`, `prompts`, `responses`, `streaks`, `ttr_metrics`.
   - Migración inicial: `apps/api/alembic/versions/0001_init_schema.py`.
+- Documentación de setup local en `docs/setup-local.md`.

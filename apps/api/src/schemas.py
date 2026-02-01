@@ -92,6 +92,7 @@ class ResponseCreate(BaseModel):
 class ResponseOut(BaseModel):
     id: int
     prompt_id: int
+    content: str
     is_valid: bool
     feedback: str | None
     created_at: datetime
