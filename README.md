@@ -92,8 +92,9 @@ Definiciones de contenedores.
 
 Documentacion del proyecto.
 
-- `plan-desarrollo.md`: roadmap tecnico y fases.
-- `architecture.md`: decisiones y arquitectura (por completar).
+  - `plan-desarrollo.md`: roadmap tecnico y fases.
+  - `architecture.md`: decisiones y arquitectura (por completar).
+  - `api.md`: documentacion de endpoints y ejemplos.
 
 ### scripts
 

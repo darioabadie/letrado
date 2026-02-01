@@ -15,6 +15,7 @@ class User(Base):
     whatsapp_id: Mapped[str] = mapped_column(String(64), unique=True, nullable=False)
     name: Mapped[str | None] = mapped_column(String(120))
     goal: Mapped[str] = mapped_column(String(40), nullable=False)
+    timezone: Mapped[str] = mapped_column(String(80), nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, nullable=False)
 
     prompts: Mapped[list["Prompt"]] = relationship(back_populates="user", cascade="all, delete-orphan")
