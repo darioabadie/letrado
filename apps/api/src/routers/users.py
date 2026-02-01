@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from ..deps import get_db
 from ..models import User
 from ..schemas import UserCreate, UserOut, UserUpdate
+from ..services.seed import seed_user_words
 
 
 router = APIRouter(prefix="/users", tags=["users"])
@@ -24,6 +25,8 @@ def create_user(payload: UserCreate, db: Session = Depends(get_db)) -> UserOut:
         timezone=payload.timezone,
     )
     db.add(user)
+    db.flush()
+    seed_user_words(db, user.id, user.goal)
     db.commit()
     db.refresh(user)
     return user

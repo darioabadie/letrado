@@ -96,6 +96,7 @@ Documentacion del proyecto.
   - `architecture.md`: decisiones y arquitectura (por completar).
   - `api.md`: documentacion de endpoints y ejemplos.
   - `setup-local.md`: guia de setup local con Docker Compose.
+  - `USER_JOURNEY.MD`: recorrido y casos de interaccion del usuario.
 
 ### scripts
 

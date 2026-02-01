@@ -44,7 +44,7 @@ El usuario incorpora Letrado como un habito diario de expresion. En lugar de est
 
 - Usuario elige objetivo (professional/academic/creative).
 - Usuario define horario preferido para recibir prompts.
-- Sistema propone palabras iniciales o solicita carga manual.
+- Sistema asigna un preset inicial de 200+ palabras segun objetivo (MVP).
 
 **Resultado esperado**
 
@@ -52,9 +52,8 @@ El usuario incorpora Letrado como un habito diario de expresion. En lugar de est
 
 ### 3) Vocabulario inicial (banco vivo)
 
-- Usuario ingresa palabras que desea activar.
-- Sistema normaliza: trim, minusculas, elimina vacios y duplicados.
-- Sistema guarda palabras nuevas y las asocia con estado `latent`.
+- Sistema siembra el banco de palabras base en estado `latent`.
+- En versiones futuras, el usuario podra agregar sus propias palabras.
 
 **Resultado esperado**
 
@@ -116,9 +115,8 @@ El usuario incorpora Letrado como un habito diario de expresion. En lugar de est
 
 ### Vocabulario inicial
 
-- Duplicados -> se ignoran sin friccion.
-- Palabras vacias o con espacios -> se descartan.
-- Palabras ya existentes en el banco -> no se duplican.
+- Preset base -> se asigna automaticamente segun objetivo.
+- En futuras versiones, los duplicados del usuario se ignoraran sin friccion.
 
 ### Prompt diario
 

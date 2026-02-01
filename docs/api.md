@@ -35,7 +35,7 @@ curl -s http://localhost:8000/health
 
 ### POST /users
 
-Crea un usuario. `whatsapp_id` debe ser unico.
+Crea un usuario. `whatsapp_id` debe ser unico. En el MVP se siembra un banco inicial de palabras segun `goal`.
 
 **Request**
 

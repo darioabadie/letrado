@@ -37,3 +37,13 @@ def test_update_user(client):
     assert updated["name"] == "Ana B."
     assert updated["goal"] == "academic"
     assert updated["timezone"] == "America/Santiago"
+
+
+def test_user_is_seeded_with_preset_words(client):
+    user = create_user(client, whatsapp_id="5491122334477")
+
+    response = client.get(f"/users/{user['id']}/words")
+
+    assert response.status_code == 200
+    rows = response.json()
+    assert len(rows) >= 200
