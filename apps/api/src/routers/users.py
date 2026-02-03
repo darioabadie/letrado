@@ -24,6 +24,7 @@ def create_user(payload: UserCreate, db: Session = Depends(get_db)) -> UserOut:
         goal=payload.goal.value,
         timezone=payload.timezone,
         onboarding_step="completed",
+        is_active=True,
     )
     db.add(user)
     db.flush()

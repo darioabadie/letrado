@@ -47,6 +47,13 @@ El usuario incorpora Letrado como un habito diario de expresion. En lugar de est
 - Usuario define horario preferido para recibir prompts.
 - Sistema asigna un preset inicial de 200+ palabras segun objetivo (MVP).
 
+Comandos disponibles:
+
+- `/help` para ayuda.
+- `/status` para estado.
+- `/goal` y `/hour` para cambios.
+- `/stop` y `/resume` para pausar o reanudar.
+
 **Resultado esperado**
 
 - Objetivo y horario definidos.

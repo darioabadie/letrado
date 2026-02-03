@@ -114,3 +114,5 @@ Este plan define la ruta de construcción para Letrado con un enfoque 100% conta
 - Daily trigger en `apps/scheduler/src/scheduler.py`.
 - Webhook y onboarding Telegram en `apps/api/src/routers/webhooks.py`.
 - Guia de integracion Telegram en `docs/telegram.md`.
+- Script de reset del stack en `scripts/reset-stack.sh`.
+- Comandos de bot y onboarding conversacional en `apps/api/src/routers/webhooks.py`.

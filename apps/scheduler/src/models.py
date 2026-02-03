@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import DateTime, ForeignKey, Integer, String, Text
+from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, String, Text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -17,6 +17,8 @@ class User(Base):
     goal: Mapped[str] = mapped_column(String(40), nullable=False)
     timezone: Mapped[str] = mapped_column(String(80), nullable=False)
     preferred_hour: Mapped[int] = mapped_column(Integer, nullable=False, default=9)
+    onboarding_step: Mapped[str | None] = mapped_column(String(40))
+    is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
 
 

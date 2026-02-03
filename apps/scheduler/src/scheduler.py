@@ -52,7 +52,12 @@ def generate_daily_prompts() -> dict[str, int]:
     now_utc = datetime.now(timezone.utc)
     created = 0
     with SessionLocal() as db:
-        users = db.query(User).all()
+        users = (
+            db.query(User)
+            .filter(User.is_active.is_(True))
+            .filter(User.onboarding_step == "completed")
+            .all()
+        )
         for user in users:
             tz = _safe_timezone(user.timezone)
             local_now = now_utc.astimezone(tz)
@@ -68,6 +73,7 @@ def generate_daily_prompts() -> dict[str, int]:
                 db.query(Prompt)
                 .filter(Prompt.user_id == user.id)
                 .filter(func.date(Prompt.scheduled_for) == target_date)
+                .filter(Prompt.content != "Mensaje inicial")
                 .first()
             )
             if existing:

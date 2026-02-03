@@ -57,6 +57,12 @@ Ver logs del API:
 docker compose --env-file .env -f infra/compose/docker-compose.yml logs -f api
 ```
 
+Reset completo del stack (con migraciones y webhook):
+
+```bash
+./scripts/reset-stack.sh
+```
+
 ## Tests (API)
 
 ```bash

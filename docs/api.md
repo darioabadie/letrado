@@ -329,6 +329,7 @@ Entrada de mensajes desde Telegram. Si el usuario no existe, se crea con `goal=p
 - `/start` reinicia el onboarding si no esta completado.
 - Objetivo valido: Profesional, Academico o Creativo.
 - Hora valida: 0-23.
+- Comandos: `/help`, `/status`, `/goal`, `/hour`, `/stop`, `/resume`.
 
 **Request**
 

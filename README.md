@@ -99,6 +99,7 @@ Documentacion del proyecto.
   - `USER_JOURNEY.MD`: recorrido y casos de interaccion del usuario.
   - `whatsapp.md`: guia de integracion con WhatsApp Cloud API.
   - `telegram.md`: guia de integracion con Telegram.
+  - `setup-local.md`: incluye `./scripts/reset-stack.sh` para reset rapido.
 
 ### scripts
 

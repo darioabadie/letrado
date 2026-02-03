@@ -35,9 +35,19 @@ curl -s "https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/getWebhookInfo"
 ## Onboarding esperado
 
 1) Usuario envia `/start`.
-2) Bot pide objetivo (Profesional/Academico/Creativo).
+2) Bot envia mensaje inicial breve y pide objetivo.
 3) Bot pide hora (0-23).
 4) Se siembra el preset y se confirma.
+
+## Comandos disponibles
+
+- `/start`: inicia onboarding.
+- `/help`: muestra ayuda.
+- `/status`: estado actual (objetivo, hora, onboarding, activo).
+- `/goal`: cambia objetivo.
+- `/hour`: cambia hora.
+- `/stop`: pausa prompts.
+- `/resume`: reanuda prompts.
 
 ## Tunnel rapido (Cloudflare)
 
@@ -46,3 +56,9 @@ cloudflared tunnel --url http://localhost:8000
 ```
 
 Usa la URL HTTPS entregada en el webhook.
+
+## Reset del stack + webhook
+
+```bash
+./scripts/reset-stack.sh
+```

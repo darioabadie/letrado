@@ -33,6 +33,7 @@ def whatsapp_webhook(
             timezone="UTC",
             onboarding_step="completed",
             preferred_hour=9,
+            is_active=True,
         )
         db.add(user)
         db.flush()
@@ -75,6 +76,29 @@ def _send_telegram_message(chat_id: int, text: str) -> None:
         return
 
 
+def _intro_message() -> str:
+    return (
+        "Bienvenido a Letrado. Recibiras prompts diarios para activar tu vocabulario. "
+        "Responde 2 pasos: objetivo y hora."
+    )
+
+
+def _help_message() -> str:
+    return (
+        "Comandos: /start, /help, /status, /goal, /hour, /stop, /resume. "
+        "Para comenzar: /start."
+    )
+
+
+def _status_message(user: User) -> str:
+    estado = "activo" if user.is_active else "pausado"
+    step = user.onboarding_step or "sin_onboarding"
+    return (
+        f"Estado: {estado}. Objetivo: {user.goal}. Hora: {user.preferred_hour}. "
+        f"Onboarding: {step}."
+    )
+
+
 def _parse_goal(text: str) -> str | None:
     normalized = text.strip().lower()
     mapping = {
@@ -110,7 +134,7 @@ def telegram_webhook(
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="invalid webhook secret")
 
     message = payload.message
-    if not message or not message.text:
+    if not message:
         return WebhookAccepted()
 
     chat_id = message.chat.id
@@ -124,26 +148,54 @@ def telegram_webhook(
             timezone="UTC",
             onboarding_step="awaiting_goal",
             preferred_hour=9,
+            is_active=True,
         )
         db.add(user)
         db.commit()
-        _send_telegram_message(
-            chat_id,
-            "Bienvenido a Letrado. Elige tu objetivo: Profesional, Academico o Creativo.",
-        )
+        _send_telegram_message(chat_id, _intro_message())
+        _send_telegram_message(chat_id, "Elige tu objetivo: Profesional, Academico o Creativo.")
+        return WebhookAccepted()
+
+    if not message.text:
+        _send_telegram_message(chat_id, "Por ahora solo texto. Envia /help.")
         return WebhookAccepted()
 
     text = message.text.strip()
-    if text.lower() == "/start":
+    command = text.split()[0].lower() if text.startswith("/") else None
+    if command == "/start":
+        user.onboarding_step = "awaiting_goal"
+        user.is_active = True
+        db.commit()
+        _send_telegram_message(chat_id, _intro_message())
+        _send_telegram_message(chat_id, "Elige tu objetivo: Profesional, Academico o Creativo.")
+        return WebhookAccepted()
+    if command == "/help":
+        _send_telegram_message(chat_id, _help_message())
         if user.onboarding_step != "completed":
-            user.onboarding_step = "awaiting_goal"
-            db.commit()
-            _send_telegram_message(
-                chat_id,
-                "Elige tu objetivo: Profesional, Academico o Creativo.",
-            )
-        else:
-            _send_telegram_message(chat_id, "Ya estas activo. Escribe tu respuesta cuando quieras.")
+            _send_telegram_message(chat_id, "Elige tu objetivo: Profesional, Academico o Creativo.")
+        return WebhookAccepted()
+    if command == "/status":
+        _send_telegram_message(chat_id, _status_message(user))
+        return WebhookAccepted()
+    if command == "/goal":
+        user.onboarding_step = "awaiting_goal"
+        db.commit()
+        _send_telegram_message(chat_id, "Elige tu objetivo: Profesional, Academico o Creativo.")
+        return WebhookAccepted()
+    if command == "/hour":
+        user.onboarding_step = "awaiting_hour"
+        db.commit()
+        _send_telegram_message(chat_id, "A que hora quieres recibir el prompt diario? (0-23)")
+        return WebhookAccepted()
+    if command == "/stop":
+        user.is_active = False
+        db.commit()
+        _send_telegram_message(chat_id, "Listo. Prompts pausados. Usa /resume para reanudar.")
+        return WebhookAccepted()
+    if command == "/resume":
+        user.is_active = True
+        db.commit()
+        _send_telegram_message(chat_id, "Listo. Prompts reanudados.")
         return WebhookAccepted()
 
     if user.onboarding_step == "awaiting_goal":
@@ -170,6 +222,7 @@ def telegram_webhook(
             return WebhookAccepted()
         user.preferred_hour = hour
         user.onboarding_step = "completed"
+        user.is_active = True
         seed_user_words(db, user.id, user.goal)
         db.commit()
         _send_telegram_message(
@@ -207,5 +260,5 @@ def telegram_webhook(
     db.add(response)
     db.commit()
 
-    _send_telegram_message(chat_id, "Gracias, recibido.")
+    _send_telegram_message(chat_id, "Recibido. Gracias.")
     return WebhookAccepted()

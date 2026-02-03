@@ -18,6 +18,7 @@ class User(Base):
     timezone: Mapped[str] = mapped_column(String(80), nullable=False)
     onboarding_step: Mapped[str | None] = mapped_column(String(40))
     preferred_hour: Mapped[int] = mapped_column(Integer, nullable=False, default=9)
+    is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, nullable=False)
 
     prompts: Mapped[list["Prompt"]] = relationship(back_populates="user", cascade="all, delete-orphan")
