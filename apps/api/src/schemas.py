@@ -112,5 +112,25 @@ class WhatsAppWebhookIn(BaseModel):
     timestamp: datetime
 
 
+class TelegramChat(BaseModel):
+    id: int
+    type: str
+    username: str | None = None
+    first_name: str | None = None
+    last_name: str | None = None
+
+
+class TelegramMessage(BaseModel):
+    message_id: int
+    date: int
+    chat: TelegramChat
+    text: str | None = None
+
+
+class TelegramUpdate(BaseModel):
+    update_id: int
+    message: TelegramMessage | None = None
+
+
 class WebhookAccepted(BaseModel):
     status: str = "accepted"

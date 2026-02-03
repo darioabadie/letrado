@@ -174,6 +174,8 @@ Actualiza el estado o conteo de una palabra del usuario.
 
 ## Prompts
 
+Nota: los prompts tambien se generan automaticamente por el scheduler diario.
+
 ### POST /users/{user_id}/prompts
 
 Crea un prompt programado para un usuario.
@@ -292,7 +294,7 @@ curl -s http://localhost:8000/users/3e3c6f1b-82c5-4d45-8d8f-6b3a7926e9c7/metrics
 
 ### POST /webhooks/whatsapp
 
-Entrada de mensajes desde WhatsApp. Por ahora solo acepta el payload y responde ack.
+Entrada de mensajes desde WhatsApp. Si el usuario no existe, se crea con `goal=professional`, `timezone=UTC` y se siembra el preset. Si `WHATSAPP_WEBHOOK_SECRET` esta configurado, requiere header `X-Webhook-Secret`.
 
 **Request**
 
@@ -311,3 +313,41 @@ Entrada de mensajes desde WhatsApp. Por ahora solo acepta el payload y responde 
   "status": "accepted"
 }
 ```
+
+**Errores**
+
+- `401`: `invalid webhook secret`
+
+### POST /webhooks/telegram
+
+Entrada de mensajes desde Telegram. Si el usuario no existe, se crea con `goal=professional`, `timezone=UTC` y se siembra el preset. Si `TELEGRAM_WEBHOOK_SECRET` esta configurado, requiere header `X-Telegram-Bot-Api-Secret-Token`.
+
+**Request**
+
+```json
+{
+  "update_id": 1,
+  "message": {
+    "message_id": 10,
+    "date": 1706788200,
+    "chat": {
+      "id": 123456,
+      "type": "private",
+      "first_name": "Ana"
+    },
+    "text": "Hola"
+  }
+}
+```
+
+**Response 200**
+
+```json
+{
+  "status": "accepted"
+}
+```
+
+**Errores**
+
+- `401`: `invalid webhook secret`

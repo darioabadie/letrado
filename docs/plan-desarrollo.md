@@ -110,3 +110,5 @@ Este plan define la ruta de construcción para Letrado con un enfoque 100% conta
   - Migración inicial: `apps/api/alembic/versions/0001_init_schema.py`.
 - Documentación de setup local en `docs/setup-local.md`.
 - Journey del usuario documentado en `docs/USER_JOURNEY.MD`.
+- Guia de integracion WhatsApp en `docs/whatsapp.md`.
+- Daily trigger en `apps/scheduler/src/scheduler.py`.

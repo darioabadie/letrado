@@ -97,6 +97,7 @@ Documentacion del proyecto.
   - `api.md`: documentacion de endpoints y ejemplos.
   - `setup-local.md`: guia de setup local con Docker Compose.
   - `USER_JOURNEY.MD`: recorrido y casos de interaccion del usuario.
+  - `whatsapp.md`: guia de integracion con WhatsApp Cloud API.
 
 ### scripts
 
