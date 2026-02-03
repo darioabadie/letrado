@@ -2,6 +2,8 @@
 
 Documentacion de los endpoints actuales expuestos por `apps/api` (FastAPI).
 
+Canal principal actual: Telegram. WhatsApp queda documentado pero no es el foco del MVP.
+
 ## Base
 
 - Base URL: `http://localhost:8000`
@@ -320,7 +322,13 @@ Entrada de mensajes desde WhatsApp. Si el usuario no existe, se crea con `goal=p
 
 ### POST /webhooks/telegram
 
-Entrada de mensajes desde Telegram. Si el usuario no existe, se crea con `goal=professional`, `timezone=UTC` y se siembra el preset. Si `TELEGRAM_WEBHOOK_SECRET` esta configurado, requiere header `X-Telegram-Bot-Api-Secret-Token`.
+Entrada de mensajes desde Telegram. Si el usuario no existe, se crea con `goal=professional`, `timezone=UTC` y se inicia onboarding por chat (objetivo y hora). Si `TELEGRAM_WEBHOOK_SECRET` esta configurado, requiere header `X-Telegram-Bot-Api-Secret-Token`.
+
+**Notas de onboarding**
+
+- `/start` reinicia el onboarding si no esta completado.
+- Objetivo valido: Profesional, Academico o Creativo.
+- Hora valida: 0-23.
 
 **Request**
 

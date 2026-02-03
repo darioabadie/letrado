@@ -9,7 +9,7 @@ Guia rapida para levantar el stack local con Docker Compose.
 ## Levantar servicios
 
 ```bash
-docker compose -f infra/compose/docker-compose.yml up --build
+docker compose --env-file .env -f infra/compose/docker-compose.yml up --build
 ```
 
 Servicios expuestos:
@@ -24,7 +24,7 @@ Servicios expuestos:
 Ejecuta Alembic dentro del contenedor de `api`:
 
 ```bash
-docker compose -f infra/compose/docker-compose.yml run --rm api alembic upgrade head
+docker compose --env-file .env -f infra/compose/docker-compose.yml run --rm api alembic upgrade head
 ```
 
 ## Variables de entorno (local)
@@ -34,25 +34,27 @@ Para desarrollo local, `infra/compose/docker-compose.yml` ya incluye valores por
 - `WHATSAPP_WEBHOOK_SECRET`
 - `LLM_PROVIDER`
 - `LLM_API_KEY`
+- `TELEGRAM_BOT_TOKEN`
+- `TELEGRAM_WEBHOOK_SECRET`
 
 ## Comandos utiles
 
 Parar servicios (sin borrar datos):
 
 ```bash
-docker compose -f infra/compose/docker-compose.yml down
+docker compose --env-file .env -f infra/compose/docker-compose.yml down
 ```
 
 Borrar volumenes (reset local):
 
 ```bash
-docker compose -f infra/compose/docker-compose.yml down -v
+docker compose --env-file .env -f infra/compose/docker-compose.yml down -v
 ```
 
 Ver logs del API:
 
 ```bash
-docker compose -f infra/compose/docker-compose.yml logs -f api
+docker compose --env-file .env -f infra/compose/docker-compose.yml logs -f api
 ```
 
 ## Tests (API)

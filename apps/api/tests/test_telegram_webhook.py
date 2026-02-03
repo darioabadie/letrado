@@ -28,7 +28,13 @@ def test_telegram_webhook_creates_user_and_response(client, db_session, monkeypa
     monkeypatch.setenv("TELEGRAM_BOT_TOKEN", "token")
     monkeypatch.setattr("src.routers.webhooks.httpx.post", fake_post)
 
-    response = client.post("/webhooks/telegram", json=_payload())
+    response = client.post("/webhooks/telegram", json=_payload(text="/start"))
+    assert response.status_code == 200
+    response = client.post("/webhooks/telegram", json=_payload(text="Profesional"))
+    assert response.status_code == 200
+    response = client.post("/webhooks/telegram", json=_payload(text="9"))
+    assert response.status_code == 200
+    response = client.post("/webhooks/telegram", json=_payload(text="Hola"))
 
     assert response.status_code == 200
     user = db_session.query(User).filter(User.whatsapp_id == "123456").first()

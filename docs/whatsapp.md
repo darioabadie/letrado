@@ -1,6 +1,6 @@
 # Integracion WhatsApp (Cloud API)
 
-Documento de referencia para implementar la integracion real con WhatsApp Business Platform (Cloud API).
+Documento de referencia para implementar la integracion real con WhatsApp Business Platform (Cloud API). Actualmente el MVP esta orientado a Telegram.
 
 ## Requisito clave sobre el numero
 

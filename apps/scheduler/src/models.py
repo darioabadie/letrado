@@ -16,6 +16,7 @@ class User(Base):
     name: Mapped[str | None] = mapped_column(String(120))
     goal: Mapped[str] = mapped_column(String(40), nullable=False)
     timezone: Mapped[str] = mapped_column(String(80), nullable=False)
+    preferred_hour: Mapped[int] = mapped_column(Integer, nullable=False, default=9)
     created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
 
 

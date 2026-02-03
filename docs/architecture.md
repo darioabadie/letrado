@@ -7,6 +7,7 @@ Este documento describe la arquitectura de Letrado, los servicios, el flujo de d
 Letrado es un SaaS B2C orientado a mejorar el vocabulario activo en hablantes nativos de espanol. La experiencia principal se vive en WhatsApp, mientras el backend procesa el lenguaje y un dashboard web muestra metricas.
 
 Documentacion de la API: `docs/api.md`.
+Guia de integracion Telegram: `docs/telegram.md`.
 
 ## Arquitectura general
 

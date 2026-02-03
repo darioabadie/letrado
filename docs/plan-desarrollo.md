@@ -12,7 +12,7 @@ Este plan define la ruta de construcción para Letrado con un enfoque 100% conta
 ## Arquitectura containerizada
 
 - **api** (FastAPI)
-  - REST API y webhook de WhatsApp
+  - REST API y webhook de Telegram (WhatsApp pausado)
   - Lógica de negocio (usuarios, vocabulario, prompts, métricas)
 - **worker** (Celery)
   - Evaluación semántica, feedback, TTR y tareas NLP
@@ -52,7 +52,7 @@ Este plan define la ruta de construcción para Letrado con un enfoque 100% conta
 ### Fase 2 — MVP funcional
 
 - Onboarding + vocabulario inicial
-- Webhook WhatsApp (texto)
+- Webhook Telegram (texto)
 - Daily trigger
 - Lematización + verificación de palabras requeridas
 - TTR + historial básico en dashboard
@@ -112,3 +112,5 @@ Este plan define la ruta de construcción para Letrado con un enfoque 100% conta
 - Journey del usuario documentado en `docs/USER_JOURNEY.MD`.
 - Guia de integracion WhatsApp en `docs/whatsapp.md`.
 - Daily trigger en `apps/scheduler/src/scheduler.py`.
+- Webhook y onboarding Telegram en `apps/api/src/routers/webhooks.py`.
+- Guia de integracion Telegram en `docs/telegram.md`.

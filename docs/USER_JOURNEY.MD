@@ -1,10 +1,10 @@
 # User Journey - Letrado
 
-Documento de producto que describe el recorrido del usuario, sus interacciones y casos clave. Enfoque: MVP en WhatsApp con extension a dashboard web y futuras fases.
+Documento de producto que describe el recorrido del usuario, sus interacciones y casos clave. Enfoque: MVP en Telegram con extension a dashboard web y futuras fases.
 
 ## Vision del journey
 
-El usuario incorpora Letrado como un habito diario de expresion. En lugar de estudiar listas pasivas, responde prompts breves en WhatsApp y recibe feedback inmediato. El valor se materializa en progreso visible (palabras activadas, racha, metricas) y en la sensacion de hablar/escribir con mas precision.
+El usuario incorpora Letrado como un habito diario de expresion. En lugar de estudiar listas pasivas, responde prompts breves en Telegram y recibe feedback inmediato. El valor se materializa en progreso visible (palabras activadas, racha, metricas) y en la sensacion de hablar/escribir con mas precision.
 
 ## Personas objetivo
 
@@ -14,7 +14,7 @@ El usuario incorpora Letrado como un habito diario de expresion. En lugar de est
 
 ## Canales y momentos
 
-- WhatsApp: canal principal (prompts, respuestas, feedback, recordatorios).
+- Telegram: canal principal (prompts, respuestas, feedback, recordatorios).
 - Dashboard web: revision de progreso y metricas (TTR, historico) cuando desea profundidad.
 
 ## Etapas del journey (MVP)
@@ -33,7 +33,7 @@ El usuario incorpora Letrado como un habito diario de expresion. En lugar de est
 ### 1) Descubrimiento y alta
 
 - Usuario conoce Letrado y decide probar.
-- Sistema ofrece un mensaje de bienvenida en WhatsApp y explica el valor (produccion forzada).
+- Sistema ofrece un mensaje de bienvenida en Telegram y explica el valor (produccion forzada).
 - Usuario acepta iniciar y comparte datos basicos.
 
 **Resultado esperado**
@@ -42,13 +42,14 @@ El usuario incorpora Letrado como un habito diario de expresion. En lugar de est
 
 ### 2) Onboarding y calibracion
 
+- Usuario inicia con `/start`.
 - Usuario elige objetivo (professional/academic/creative).
 - Usuario define horario preferido para recibir prompts.
 - Sistema asigna un preset inicial de 200+ palabras segun objetivo (MVP).
 
 **Resultado esperado**
 
-- Objetivo definido y lista inicial lista para guardado.
+- Objetivo y horario definidos.
 
 ### 3) Vocabulario inicial (banco vivo)
 
@@ -109,9 +110,9 @@ El usuario incorpora Letrado como un habito diario de expresion. En lugar de est
 
 ### Onboarding
 
-- Happy path: usuario elige objetivo, ingresa 10-20 palabras, recibe primer prompt.
-- Edge: usuario no ingresa palabras -> sistema sugiere un set base por objetivo.
-- Edge: zona horaria invalida -> se solicita correccion.
+- Happy path: usuario elige objetivo, define hora, recibe confirmacion.
+- Edge: objetivo invalido -> se solicita correccion.
+- Edge: hora invalida -> se solicita correccion.
 
 ### Vocabulario inicial
 
@@ -122,7 +123,7 @@ El usuario incorpora Letrado como un habito diario de expresion. En lugar de est
 
 - Usuario responde fuera de tiempo -> se acepta, pero no suma racha.
 - Usuario ignora el prompt -> recordatorio suave.
-- Fallo en envio WhatsApp -> reintento y log.
+- Fallo en envio Telegram -> reintento y log.
 
 ### Respuesta
 
@@ -138,7 +139,7 @@ El usuario incorpora Letrado como un habito diario de expresion. En lugar de est
 
 ### Dashboard
 
-- Usuario no visita dashboard -> valor sigue entregandose en WhatsApp.
+- Usuario no visita dashboard -> valor sigue entregandose en Telegram.
 - Usuario visita dashboard -> ve progreso acumulado y ejemplos propios.
 
 ## Eventos clave y mensajes

@@ -32,8 +32,9 @@ def _safe_timezone(timezone_name: str | None) -> ZoneInfo:
         return ZoneInfo("UTC")
 
 
-def _should_send_prompt(local_now: datetime) -> bool:
-    return local_now.hour == 9
+def _should_send_prompt(local_now: datetime, preferred_hour: int | None) -> bool:
+    hour = preferred_hour if preferred_hour is not None else 9
+    return local_now.hour == hour
 
 
 def _words_per_prompt(days_since_created: int) -> tuple[int, int]:
@@ -55,7 +56,7 @@ def generate_daily_prompts() -> dict[str, int]:
         for user in users:
             tz = _safe_timezone(user.timezone)
             local_now = now_utc.astimezone(tz)
-            if not _should_send_prompt(local_now):
+            if not _should_send_prompt(local_now, user.preferred_hour):
                 continue
 
             local_date = local_now.date()
